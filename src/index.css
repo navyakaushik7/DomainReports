@@ -1,0 +1,152 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans:wght@400;600;700&family=Source+Serif+4:wght@600;700&family=JetBrains+Mono:wght@500&display=swap');
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", "Noto Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Govt-portal blue, used for primary actions, links, focus rings */
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-brand-300: #8fc0fb;
+  --color-brand-400: #4c96f2;
+  --color-brand-500: #1f6fdb;
+  --color-brand-600: #0a5bc4;
+  --color-brand-700: #0a4696;
+  --color-brand-800: #0d3b78;
+  --color-brand-900: #0f3163;
+
+  
+  --color-ink-950: #0a0f1c;
+  --color-ink-900: #0e1526;
+  --color-ink-800: #142038;
+  --color-ink-700: #1d2d4d;
+  --color-ink-600: #2a3d63;
+
+  /* Ashoka Chakra navy + national-flag accents, used sparingly (top strip, badges) */
+  --color-saffron: #ff9933;
+  --color-chakra: #0b3d91;
+
+  /* Semantic surface/text tokens — these flip with the .dark class */
+  --color-surface: var(--c-surface);
+  --color-panel: var(--c-panel);
+  --color-panel-muted: var(--c-panel-muted);
+  --color-line: var(--c-line);
+  --color-line-strong: var(--c-line-strong);
+  --color-heading: var(--c-heading);
+  --color-muted: var(--c-muted);
+  --color-faint: var(--c-faint);
+}
+
+:root {
+  --c-surface: #eef1f7;
+  --c-panel: #ffffff;
+  --c-panel-muted: #f4f6fb;
+  --c-line: #e2e8f0;
+  --c-line-strong: #cbd5e1;
+  --c-heading: #0f1421;
+  --c-muted: #5b667c;
+  --c-faint: #8a94a8;
+}
+
+.dark {
+  --c-surface: #0b101c;
+  --c-panel: #121a2c;
+  --c-panel-muted: #1a2338;
+  --c-line: #263149;
+  --c-line-strong: #34405c;
+  --c-heading: #eef1f8;
+  --c-muted: #a2adc4;
+  --c-faint: #6d7893;
+}
+
+.high-contrast {
+  --c-surface: #ffffff;
+  --c-panel: #ffffff;
+  --c-panel-muted: #f1f1f1;
+  --c-line: #666666;
+  --c-line-strong: #333333;
+  --c-heading: #000000;
+  --c-muted: #222222;
+  --c-faint: #444444;
+}
+.dark.high-contrast {
+  --c-surface: #000000;
+  --c-panel: #080808;
+  --c-panel-muted: #151515;
+  --c-line: #bdbdbd;
+  --c-line-strong: #e5e5e5;
+  --c-heading: #ffffff;
+  --c-muted: #f1f1f1;
+  --c-faint: #d0d0d0;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: "Noto Sans", "Noto Sans Devanagari", sans-serif;
+  background-color: var(--color-surface);
+  color: var(--color-heading);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--c-line-strong) transparent;
+}
+*::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--c-line-strong);
+  border-radius: 9999px;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* National tricolour strip — a thin, quiet identity marker used under the
+   government info bar. Uses the flag's colours only, not any state emblem. */
+.tricolour-strip {
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    #ff9933 0%, #ff9933 33.33%,
+    #ffffff 33.33%, #ffffff 66.66%,
+    #128807 66.66%, #128807 100%
+  );
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 0.25s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in { animation: none; }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 26s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee { animation: none; }
+}
